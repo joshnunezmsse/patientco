@@ -1,5 +1,5 @@
 # Patientco Coding Sample
-This is a Web page which displays a list of names, the person's nationality, thier home currency symbol, and the total value of the person's currency holding in USD.
+This is a Web page which displays a list of names, the person's nationality, and the total value of the person's currency holding in thier home currency.  This list is ordered by total value of portfolio in USD, from least valuable to most valuable.
 
 Access the web page at https://joshnunezmsse.github.io/patientco
 
@@ -15,7 +15,3 @@ The web application is split into three parts:
 - Additional seperation of concerns could be persued by moving the data pieces into specific objects.
 - Lazy loading of AJAX resources
 - Better sorting algorithm
-
-----
-## Deviations
-All total portfolio values are presented in USD because the openexchangerates.org account provided only has USD base currency available.  If multiple base currencies were available there would have been a call added to retrieve the exchange rates for the currency of the current client.  The base exchange rates would also have been cached so multiple calls would not be required as clients from the same base currency are processed.
