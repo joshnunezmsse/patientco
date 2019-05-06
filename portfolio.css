@@ -1,1 +1,23 @@
-body {}
+body {
+    
+}
+
+.client {
+    width: 90%;
+}
+
+#client-name {
+    display: inline-block;
+    width: 25%;
+}
+
+#client-nationality {
+    display: inline-block;
+    width: 25%;
+}
+
+#portfolio-value {
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+}

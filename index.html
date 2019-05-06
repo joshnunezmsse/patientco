@@ -2,16 +2,25 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="portfolio.css" />
-        <script src="load_data.js" ></script>
-        <script src="portfolio_actions.js"></script>
+        <script src="PortfolioList.js"></script>
     </head>
     <body>
-<!--
-    chrome --disable-web-security
+        <h1>Portfolios</h1>
 
-or 
+        <!-- define the location of the protfolio list -->
+        <div class="PortfolioList"
+             data-clientList="ForExInputs/portfolio.json"
+             data-countryList="ForExInputs/Country.json"
+             data-currencyList="ForExInputs/CurrencyCode.json"
+             data-exchangeRateList="http://openexchangerates.org/api/latest.json?app_id=925b5c034e404a678862b0ea49a2fab6">
 
---allow-file-access-from-files --allow-file-access --allow-cross-origin-auth-prompt
--->
+             <!-- supply a template for the client entry in the portfolio list -->
+            <div class="client">
+                <span id="client-name">name</span>
+                <span id="client-nationality">nationality</span>
+                <span id="portfolio-value">$0</span>
+            </div>
+
+        </div>
     </body>
 </html>
