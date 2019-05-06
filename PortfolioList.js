@@ -1,10 +1,17 @@
 window.addEventListener("load", function () {
+
+    /**
+     * this is the "constructor" function of the PortfolioList and is used to create
+     * the display elements of the PortfolioList and add any behaviours needed 
+     */
     var PortfolioList = function (e) {
+        // there two variables are used to ensure processing of data doesn't happen
+        //   until all the data has been loaded into memory
         var requiredSources = 4;
         var sourceCount = 0;
-    
-        console.log(e.clientList);
 
+        // loadResource calls are used to import data from sources specified on the
+        // PortfolioList configuration in the HTML
         loadResource(e.attributes["data-countryList"].value, function(d) {
             e.CountryData = JSON.parse(d.responseText);
             sourceCount++;
@@ -38,6 +45,9 @@ window.addEventListener("load", function () {
         })
     }
 
+    /**
+     * Update the UI based on the data that has been loaded
+     */
     var loadUI = function (e) {
         var newClient = e.querySelector(".client");
         var clientTemplate = newClient.cloneNode(true);
@@ -55,6 +65,10 @@ window.addEventListener("load", function () {
         }
     }
 
+    /**
+     * simple binary insert to find the correct place place the new client so the list
+     * is ordered.  Could be enhances with a different algorith.
+     */
     var insertClient = function(e, client) {
         var done = false;
         var clientList = e.querySelectorAll(".client");
