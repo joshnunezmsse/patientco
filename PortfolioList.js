@@ -58,8 +58,9 @@ window.addEventListener("load", function () {
             newClient.countryInfo.currency = getCountryCurrency(e, newClient.countryInfo.currencyCode);
             newClient.portfolioValue = calculatePortfolioValue(e, e.ClientData[i]);
             newClient.querySelector("#client-name").innerHTML = e.ClientData[i].name;
-            newClient.querySelector("#client-nationality").innerHTML = newClient.countryInfo.name + " (" + newClient.countryInfo.currency.symbol + ")";
-            newClient.querySelector("#portfolio-value").innerHTML = usdSymbol + " " + newClient.portfolioValue;
+            newClient.querySelector("#client-nationality").innerHTML = newClient.countryInfo.name;
+            newClient.querySelector("#portfolio-value").innerHTML = newClient.countryInfo.currency.symbol + " " +
+                                                                    Math.round(newClient.portfolioValue * e.ExchangeRates[newClient.countryInfo.currencyCode]);
             insertClient(e, newClient);
             newClient = clientTemplate.cloneNode(true);
         }
@@ -67,7 +68,8 @@ window.addEventListener("load", function () {
 
     /**
      * simple binary insert to find the correct place place the new client so the list
-     * is ordered.  Could be enhances with a different algorith.
+     * is ordered.  Clients will be inserted into the list based on the value of thier 
+     * portfolio in USD.  Could be enhances with a different algorithm.
      */
     var insertClient = function(e, client) {
         var done = false;
@@ -107,7 +109,7 @@ window.addEventListener("load", function () {
         var returnValue = 0;
         for (var i=0; i < client.fxAssets.length; i++) {
             var factor = e.ExchangeRates[client.fxAssets[i].currencyCode]
-            returnValue += client.fxAssets[i].amount * factor;
+            returnValue += client.fxAssets[i].amount / factor;
         }
         return Math.round(returnValue);
     }
